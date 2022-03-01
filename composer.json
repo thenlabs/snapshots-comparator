@@ -1,5 +1,5 @@
 {
-    "name": "thenlabs/test-snapshots",
+    "name": "thenlabs/snapshots-comparator",
     "license": "MIT",
     "authors": [
         {
@@ -8,7 +8,6 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": ">=9.5"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.2",
@@ -16,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ThenLabs\\TestSnapshots\\": "src/"
+            "ThenLabs\\SnapshotsComparator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ThenLabs\\TestSnapshots\\Tests\\": "tests/"
+            "ThenLabs\\SnapshotsComparator\\Tests\\": "tests/"
         }
     },
     "scripts": {

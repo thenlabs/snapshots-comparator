@@ -1,2 +1,2 @@
 
-# TestSnapshots
+# SnapshotsComparator
