@@ -40,32 +40,32 @@ abstract class Comparator
         $expectations = $expectationBuilder->getExpectations();
 
         if (! empty($created)) {
-            $unexpectations['created'] = $created;
+            $unexpectations['CREATED'] = $created;
 
-            self::filterUnexpectations($unexpectations['created'], $expectations['created']);
+            self::filterUnexpectations($unexpectations['CREATED'], $expectations['CREATED']);
 
-            if (empty($unexpectations['created'])) {
-                unset($unexpectations['created']);
+            if (empty($unexpectations['CREATED'])) {
+                unset($unexpectations['CREATED']);
             }
         }
 
         if (! empty($updated)) {
-            $unexpectations['updated'] = $updated;
+            $unexpectations['UPDATED'] = $updated;
 
-            self::filterUnexpectations($unexpectations['updated'], $expectations['updated']);
+            self::filterUnexpectations($unexpectations['UPDATED'], $expectations['UPDATED']);
 
-            if (empty($unexpectations['updated'])) {
-                unset($unexpectations['updated']);
+            if (empty($unexpectations['UPDATED'])) {
+                unset($unexpectations['UPDATED']);
             }
         }
 
         if (! empty($deleted)) {
-            $unexpectations['deleted'] = $deleted;
+            $unexpectations['DELETED'] = $deleted;
 
-            self::filterUnexpectations($unexpectations['deleted'], $expectations['deleted']);
+            self::filterUnexpectations($unexpectations['DELETED'], $expectations['DELETED']);
 
-            if (empty($unexpectations['deleted'])) {
-                unset($unexpectations['deleted']);
+            if (empty($unexpectations['DELETED'])) {
+                unset($unexpectations['DELETED']);
             }
         }
 

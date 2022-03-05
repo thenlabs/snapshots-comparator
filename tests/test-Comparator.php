@@ -12,7 +12,7 @@ test(function () {
     $this->assertEmpty($result->getCreated());
 });
 
-testCase('created', function () {
+testCase('CREATED', function () {
     testCase(function () {
         setUp(function () {
             $this->before = [];
@@ -32,7 +32,7 @@ testCase('created', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'created' => ['db' => []],
+                'CREATED' => ['db' => []],
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -80,7 +80,7 @@ testCase('created', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'created' => ['db' => []],
+                'CREATED' => ['db' => []],
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -115,7 +115,7 @@ testCase('created', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'created' => $this->after,
+                'CREATED' => $this->after,
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -209,7 +209,7 @@ testCase('created', function () {
     });
 });
 
-testCase('deleted', function () {
+testCase('DELETED', function () {
     testCase(function () {
         setUp(function () {
             $this->before = ['db' => []];
@@ -229,7 +229,7 @@ testCase('deleted', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'deleted' => ['db' => []],
+                'DELETED' => ['db' => []],
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -277,7 +277,7 @@ testCase('deleted', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'deleted' => ['db' => []],
+                'DELETED' => ['db' => []],
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -313,7 +313,7 @@ testCase('deleted', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'deleted' => $this->before,
+                'DELETED' => $this->before,
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -407,7 +407,7 @@ testCase('deleted', function () {
     });
 });
 
-testCase('updated', function () {
+testCase('UPDATED', function () {
     testCase(function () {
         setUp(function () {
             $this->before = ['val' => []];
@@ -427,7 +427,7 @@ testCase('updated', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'updated' => ['val' => true],
+                'UPDATED' => ['val' => true],
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -475,7 +475,7 @@ testCase('updated', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'updated' => $this->after,
+                'UPDATED' => $this->after,
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());
@@ -520,7 +520,7 @@ testCase('updated', function () {
             $this->assertFalse($result->isSuccessful());
 
             $unexpectations = [
-                'updated' => $this->after,
+                'UPDATED' => $this->after,
             ];
 
             $this->assertEquals($unexpectations, $result->getUnexpectations());

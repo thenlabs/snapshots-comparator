@@ -12,9 +12,9 @@ class ExpectationBuilder
      * @var array
      */
     protected $expectations = [
-        'created' => [],
-        'updated' => [],
-        'deleted' => [],
+        'CREATED' => [],
+        'UPDATED' => [],
+        'DELETED' => [],
     ];
 
     public function getExpectations(): array
@@ -24,24 +24,24 @@ class ExpectationBuilder
 
     public function expectCreated(array $expectations): void
     {
-        $this->expectations['created'] = array_replace_recursive(
-            $this->expectations['created'],
+        $this->expectations['CREATED'] = array_replace_recursive(
+            $this->expectations['CREATED'],
             $expectations
         );
     }
 
     public function expectUpdated(array $expectations): void
     {
-        $this->expectations['updated'] = array_replace_recursive(
-            $this->expectations['updated'],
+        $this->expectations['UPDATED'] = array_replace_recursive(
+            $this->expectations['UPDATED'],
             $expectations
         );
     }
 
     public function expectDeleted(array $expectations): void
     {
-        $this->expectations['deleted'] = array_replace_recursive(
-            $this->expectations['deleted'],
+        $this->expectations['DELETED'] = array_replace_recursive(
+            $this->expectations['DELETED'],
             $expectations
         );
     }
