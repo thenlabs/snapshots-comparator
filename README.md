@@ -1,6 +1,12 @@
 
 # SnapshotsComparator
 
+Comparison of state arrays with expectations.
+
+#### If you like this project gift us a ⭐.
+
+<hr />
+
 ## Usage example.
 
 We have the next two status vars:
