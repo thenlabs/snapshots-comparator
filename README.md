@@ -7,6 +7,10 @@ Comparison of state arrays with expectations.
 
 <hr />
 
+## Installation.
+
+    composer require thenlabs/snapshots-comparator dev-main
+
 ## Usage example.
 
 We have the next two status vars:
