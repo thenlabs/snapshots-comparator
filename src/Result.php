@@ -28,9 +28,18 @@ class Result
      */
     protected $unexpectations = [];
 
+    /**
+     * @var array
+     */
+    protected $unusedExpectations = [];
+
     public function isSuccessful(): bool
     {
-        return empty($this->unexpectations);
+        if (empty($this->unexpectations) && empty($this->unusedExpectations)) {
+            return true;
+        }
+
+        return false;
     }
 
     public function getCreated(): array
@@ -71,5 +80,15 @@ class Result
     public function setUnexpectations(array $unexpectations): void
     {
         $this->unexpectations = $unexpectations;
+    }
+
+    public function getUnusedExpectations(): array
+    {
+        return $this->unusedExpectations;
+    }
+
+    public function setUnusedExpectations(array $unusedExpectations): void
+    {
+        $this->unusedExpectations = $unusedExpectations;
     }
 }

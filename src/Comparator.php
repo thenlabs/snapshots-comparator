@@ -22,10 +22,6 @@ abstract class Comparator
         // It's required becouse 'arrayRecursiveDiff' perform the comparision in only one sense.
         $diff = array_replace_recursive($diff, self::arrayRecursiveDiff($after, $before));
 
-        if (empty($diff)) {
-            return $result;
-        }
-
         $created = [];
         $updated = [];
         $deleted = [];
@@ -36,8 +32,31 @@ abstract class Comparator
         $result->setUpdated($updated);
         $result->setDeleted($deleted);
 
-        $unexpectations = [];
         $expectations = $expectationBuilder->getExpectations();
+        $unexpectations = [];
+        $unusedExpectations = [
+            'CREATED' => [],
+            'UPDATED' => [],
+            'DELETED' => [],
+        ];
+
+        self::filterUnusedExpectations($expectations['CREATED'], $created, $unusedExpectations['CREATED']);
+        self::filterUnusedExpectations($expectations['UPDATED'], $updated, $unusedExpectations['UPDATED']);
+        self::filterUnusedExpectations($expectations['DELETED'], $deleted, $unusedExpectations['DELETED']);
+
+        if (empty($unusedExpectations['CREATED'])) {
+            unset($unusedExpectations['CREATED']);
+        }
+
+        if (empty($unusedExpectations['UPDATED'])) {
+            unset($unusedExpectations['UPDATED']);
+        }
+
+        if (empty($unusedExpectations['DELETED'])) {
+            unset($unusedExpectations['DELETED']);
+        }
+
+        $result->setUnusedExpectations($unusedExpectations);
 
         if (! empty($created)) {
             $unexpectations['CREATED'] = $created;
@@ -138,6 +157,27 @@ abstract class Comparator
                     ) {
                         unset($unexpectations[$key]);
                     }
+                }
+            }
+        }
+    }
+
+    private static function filterUnusedExpectations(array $expectations, array $diff, array &$unusedExpectations): void
+    {
+        foreach ($expectations as $expectationKey => $expectationValue) {
+            if (! array_key_exists($expectationKey, $diff)) {
+                $unusedExpectations[$expectationKey] = $expectations[$expectationKey];
+            } elseif (is_array($expectationValue)) {
+                $unusedExpectations[$expectationKey] = [];
+
+                self::filterUnexpectations(
+                    $expectations[$expectationKey],
+                    $diff[$expectationKey],
+                    $unusedExpectations[$expectationKey]
+                );
+
+                if (empty($unusedExpectations[$expectationKey])) {
+                    unset($unusedExpectations[$expectationKey]);
                 }
             }
         }

@@ -10,6 +10,29 @@ test(function () {
     $this->assertEmpty($result->getDeleted());
     $this->assertEmpty($result->getUpdated());
     $this->assertEmpty($result->getCreated());
+    $this->assertEmpty($result->getUnusedExpectations());
+});
+
+test(function () {
+    $expectations = new ExpectationBuilder();
+    $expectations->expectCreated(['key1' => 'value1']);
+    $expectations->expectDeleted(['key2' => 'value2']);
+    $expectations->expectUpdated(['key3' => 'value3']);
+
+    $result = Comparator::compare([], [], $expectations);
+
+    $this->assertFalse($result->isSuccessful());
+    $this->assertEmpty($result->getDeleted());
+    $this->assertEmpty($result->getUpdated());
+    $this->assertEmpty($result->getCreated());
+
+    $expectedUnusedExpectations = [
+        'CREATED' => ['key1' => 'value1'],
+        'DELETED' => ['key2' => 'value2'],
+        'UPDATED' => ['key3' => 'value3'],
+    ];
+
+    $this->assertEquals($expectedUnusedExpectations, $result->getUnusedExpectations());
 });
 
 testCase('CREATED', function () {
