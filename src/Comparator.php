@@ -150,7 +150,7 @@ abstract class Comparator
                         unset($unexpectations[$key]);
                     }
                 } else {
-                    $expectationValue = $expectations[$key];
+                    $expectationValue = $expectations[$key] ?? null;
 
                     if ((is_callable($expectationValue) && true == $expectationValue($value)) ||
                         $expectationValue === $value
