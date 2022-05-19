@@ -141,7 +141,11 @@ abstract class Comparator
             }
 
             foreach ($unexpectations as $key => $value) {
-                if (is_array($value) && !empty($value)) {
+                if (is_array($value) &&
+                    !empty($value) &&
+                    array_key_exists($key, $unexpectations) &&
+                    array_key_exists($key, $expectations)
+                ) {
                     if (true == self::filterUnexpectations($unexpectations[$key], $expectations[$key])) {
                         unset($unexpectations[$key]);
                     }
